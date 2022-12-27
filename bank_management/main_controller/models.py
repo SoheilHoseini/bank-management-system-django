@@ -1,7 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
 class PersonalInformation(models.Model):
     GENDER_CHOICES = (
         ("m", "male"),
@@ -40,7 +39,7 @@ class Deposit(models.Model):
     deposit_type = models.CharField(max_length=45)
     interest_rate = models.FloatField()
     amount = models.FloatField()
-    branch_id = models.ForeignKey(Branch, to_field='b_id')
+    branch_id = models.ForeignKey(Branch, to_field='b_id', on_delete=models.CASCADE)
 
 
 class Contract(models.Model):
@@ -56,17 +55,17 @@ class Employee(models.Model):
     email = models.EmailField()
     employment_status = models.CharField(max_length=45)
     job_position = models.CharField(max_length=45)
-    e_dp_id = models.ForeignKey(Deposit, to_field='d_num')
-    e_national_id = models.ForeignKey(PersonalInformation, to_field='national_id')
-    e_contract_id = models.ForeignKey(Contract)
-    e_b_id = models.ForeignKey(Branch, to_field='b_id')
+    e_dp_id = models.ForeignKey(Deposit, to_field='d_num', on_delete=models.CASCADE)
+    e_national_id = models.ForeignKey(PersonalInformation, to_field='national_id', on_delete=models.CASCADE)
+    e_contract_id = models.ForeignKey(Contract, on_delete=models.CASCADE)
+    e_b_id = models.ForeignKey(Branch, to_field='b_id', on_delete=models.CASCADE)
 
 
 class Customer(models.Model):
     c_id = models.IntegerField(primary_key=True, unique=True)
-    c_national_id = models.ForeignKey(PersonalInformation, to_field='national_id')
-    c_contract_id = models.ForeignKey(Contract)
-    c_dp_num = models.ForeignKey(Deposit, to_field='d_num')
+    c_national_id = models.ForeignKey(PersonalInformation, to_field='national_id', on_delete=models.CASCADE)
+    c_contract_id = models.ForeignKey(Contract, on_delete=models.CASCADE)
+    c_dp_num = models.ForeignKey(Deposit, to_field='d_num', on_delete=models.CASCADE)
 
 
 class Loan(models.Model):
@@ -76,7 +75,7 @@ class Loan(models.Model):
     number_of_debts = models.IntegerField()
     guarantor_job = models.CharField(max_length=45)
     guarantor_cnt = models.IntegerField()
-    l_customer_id = models.ForeignKey(Customer, to_field='c_id')
+    l_customer_id = models.ForeignKey(Customer, to_field='c_id', on_delete=models.CASCADE)
 
 
 class Securities(models.Model):
@@ -85,19 +84,19 @@ class Securities(models.Model):
     value = models.FloatField()
     purchase_date = models.DateField()
     expire_date = models.DateField()
-    s_cust_id = models.ForeignKey(Customer, to_field='c_id')
+    s_cust_id = models.ForeignKey(Customer, to_field='c_id', on_delete=models.CASCADE)
 
 
 class Card(models.Model):
     card_num = models.IntegerField(primary_key=True, unique=True, max_length=16)
     expire_date = models.DateField()
     cvv2 = models.IntegerField(unique=True)
-    card_dp_num = models.ForeignKey(Deposit, to_field='d_num', max_length=10)
+    card_dp_num = models.ForeignKey(Deposit, to_field='d_num', max_length=10, on_delete=models.CASCADE)
 
 
 class Check(models.Model):
     serial_num = models.IntegerField(primary_key=True, unique=True)
-    ch_dp_num = models.ForeignKey(Deposit, to_field='d_num', max_length=10)
+    ch_dp_num = models.ForeignKey(Deposit, to_field='d_num', max_length=10, on_delete=models.CASCADE)
 
 
 class Transaction(models.Model):
@@ -107,5 +106,5 @@ class Transaction(models.Model):
     source_bank = models.CharField(max_length=45)
     destination_bank = models.CharField(max_length=45)
     destination_deposit_num = models.CharField(max_length=45)
-    tr_dp_num = models.ForeignKey(Deposit, to_field='d_num', max_length=10)
+    tr_dp_num = models.ForeignKey(Deposit, to_field='d_num', max_length=10, on_delete=models.CASCADE)
 
