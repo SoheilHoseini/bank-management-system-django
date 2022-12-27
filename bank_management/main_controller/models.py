@@ -21,7 +21,7 @@ class PersonalInformation(models.Model):
     address = models.TextField(max_length=200)
     cellphone_number = models.CharField(max_length=11, unique=True)
     phone_number = models.CharField(max_length=8, unique=True)
-    education = models.CharField(max_length=10)
+    education = models.CharField(max_length=20)
     marital_status = models.CharField(max_length=10, choices=MARITAL_CHOICES)
     nationality = models.CharField(max_length=10)
 
@@ -88,7 +88,7 @@ class Securities(models.Model):
 
 
 class Card(models.Model):
-    card_num = models.IntegerField(primary_key=True, unique=True, max_length=16)
+    card_num = models.IntegerField(primary_key=True, unique=True)
     expire_date = models.DateField()
     cvv2 = models.IntegerField(unique=True)
     card_dp_num = models.ForeignKey(Deposit, to_field='d_num', max_length=10, on_delete=models.CASCADE)
