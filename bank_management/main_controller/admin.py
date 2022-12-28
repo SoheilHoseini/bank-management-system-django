@@ -9,12 +9,12 @@ class PersonalInformationAdmin(admin.ModelAdmin):
 
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
-    list_display = ['job_position']
+    list_display = ['e_national_id', 'job_position']
 
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['c_national_id']
 
 
 @admin.register(Contract)

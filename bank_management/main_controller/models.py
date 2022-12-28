@@ -59,6 +59,7 @@ class Employee(models.Model):
     e_national_id = models.ForeignKey(PersonalInformation, to_field='national_id', on_delete=models.CASCADE)
     e_contract_id = models.ForeignKey(Contract, on_delete=models.CASCADE)
     e_b_id = models.ForeignKey(Branch, to_field='b_id', on_delete=models.CASCADE)
+    salary = models.IntegerField(default=0)
 
 
 class Customer(models.Model):

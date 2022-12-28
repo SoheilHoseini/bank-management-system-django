@@ -8,4 +8,7 @@ urlpatterns = [
     path('all_customers/', AllCustomers),
     path('all_transactions/', AllTrans),
     path('all_deposits', AllDeposits),
+    path('get_transaction/', GetTransaction),
+    path('get_customer/', GetCustomer),
+    path('get_employee/', GetEmployee),
 ]
