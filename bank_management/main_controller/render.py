@@ -4,6 +4,6 @@ def render_to_readable_output(objs):
     You just need to filter Books and give it to this function.
     """
 
-    splitter = '\n' + ('-' * 70) + '\n\n\n'
+    splitter = '<br>' + ('-' * 70) + '<br>'
     output = splitter.join(map(str, objs))
     return output

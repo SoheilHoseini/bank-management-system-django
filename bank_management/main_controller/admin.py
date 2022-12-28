@@ -4,12 +4,12 @@ from .models import *
 
 @admin.register(PersonalInformation)
 class PersonalInformationAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['first_name', 'last_name', 'national_id']
 
 
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['job_position']
 
 
 @admin.register(Customer)
