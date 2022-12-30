@@ -11,4 +11,8 @@ urlpatterns = [
     path('get_transaction/', GetTransaction),
     path('get_customer/', GetCustomer),
     path('get_employee/', GetEmployee),
+    path('signup/', signup),
+    path('login/', login),
+    path('change_pass/', change_password),
+    path('logout/', logout),
 ]
