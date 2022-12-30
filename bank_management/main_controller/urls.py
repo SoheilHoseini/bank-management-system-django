@@ -13,6 +13,6 @@ urlpatterns = [
     path('get_employee/', GetEmployee),
     path('signup/', signup),
     path('login/', login),
-    path('change_pass/', change_password),
+    path('change_password/', change_password),
     path('logout/', logout),
 ]
